@@ -13,27 +13,11 @@ use App\Http\Controllers\ReportesController;
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
 });
-<<<<<<< HEAD
+//sub
 Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaEnCine']);
-=======
-
-<<<<<<< HEAD
-Route::post('/asignar-sala-cine',[procesosController::class, 'insertarSalaEnCine']->name('insertarSalaEnCine'));
-
-Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas']->name('ObtenerCineYSalas'));
-
-Route::resource('/cine_sala', CinesSalasController::class);
-=======
-//Route::post('/asignar-sala-cine',[procesosController::class, 'insertarSalaEnCine']->name('insertarSalaEnCine'));
->>>>>>> main
-
 //Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas']->name('ObtenerCineYSalas'));
-
+//a
 //Route::resource('/cine_sala', CinesSalasController::class);
-<<<<<<< HEAD
-=======
->>>>>>> 03f887e (tabla con los datos del drive)
->>>>>>> main
 
 Route::resource('/pelicula', PeliculasController::class);
 

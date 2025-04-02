@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+//ANGEL GAY
 class Salas extends Model
 {
     public $table = "salas";

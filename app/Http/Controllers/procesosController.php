@@ -11,7 +11,7 @@ class procesosController extends Controller
 {
     public function insertarSalaEnCine(Request $request){
 
-        // ------  Pregunto si el Id del Cine que quiero guardar existe en la tabla --------- //
+       // ------  Pregunto si el Id del Cine que quiero guardar existe en la tabla --------- //
         $existeCine = Cine::where('IdCine', $request->IdCine)->exists();
 
         // ------ Si la variable $existeCine no trae valor, regresar mensaje al usuario ----- //
@@ -42,5 +42,6 @@ class procesosController extends Controller
 
         return response()->json(["Error" => false, "Mensaje" => "Registro insertado correctamente"]);
     }
+    //subir 
 }
 
