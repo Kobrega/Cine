@@ -13,8 +13,7 @@ use App\Http\Controllers\ReportesController;
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
 });
-
-//Route::post('/asignar-sala-cine',[procesosController::class, 'insertarSalaEnCine']->name('insertarSalaEnCine'));
+Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaEnCine']);
 
 //Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas']->name('ObtenerCineYSalas'));
 
