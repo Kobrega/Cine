@@ -11,33 +11,37 @@ class procesosController extends Controller
 {
     public function insertarSalaEnCine(Request $request){
 
-        // ------  pregunto si el id que del Cine que quiero guardar exista en la tabla --------- //
-        $existeCine = Cine::where('IdCine',$request->IdCine)->exist();
+       // ------  Pregunto si el Id del Cine que quiero guardar existe en la tabla --------- //
+        $existeCine = Cine::where('IdCine', $request->IdCine)->exists();
 
-            // ------ si la variable $exiteCine no trae valor regresar mensaje al usuario ----- //
-            if(!$existeCine){
-                return Response()->json(["Error"=>true,"Mensaje"=>"El Id de cine no existe :c"],422);
-            }
-        
+        // ------ Si la variable $existeCine no trae valor, regresar mensaje al usuario ----- //
+        if (!$existeCine) {
+            return response()->json(["Error" => true, "Mensaje" => "El Id de cine no existe :c"], 422);
+        }
+
         // ------------------------------------------------------------------------------------------------- //
-        $existeSala = Salas::where('IdSala',$request->IdSala)->exist();
+        $existeSala = Salas::where('IdSala', $request->IdSala)->exists();
 
-        if(!$existeSala){
-            return Response()->json(["Error"=>true,"Mensaje"=>"El Id de Sala no existe :c"],422);
+        if (!$existeSala) {
+            return response()->json(["Error" => true, "Mensaje" => "El Id de Sala no existe :c"], 422);
         }
 
-        $existeRegistro = CinesSalas::where('IdCine', $request-> IdCine)
-                                        ->where('IdSala', $request->IdSala)
-                                        ->exist();
-        if(!$existeRegistro){
-            return Response()->json(["Error"=>true,"Mensaje"=>"No existe este registro :c"],422);
+        $existeRegistro = CinesSalas::where('IdCine', $request->IdCine)
+                                    ->where('IdSala', $request->IdSala)
+                                    ->exists();
+
+        if ($existeRegistro) {
+            return response()->json(["Error" => true, "Mensaje" => "Este registro ya existe :c"], 422);
         }
 
-        $result = CinesSalas :: create([
-            "IdCine", $request->IdCine,
-            "IdSala", $request->IdSala
+        // Crear el nuevo registro
+        $result = CinesSalas::create([
+            "IdCine" => $request->IdCine,
+            "IdSala" => $request->IdSala
         ]);
 
-        return Response ()-> json(["Error"=>true,"Mensaje"=>"El Id de Cine no existe :c"]);
+        return response()->json(["Error" => false, "Mensaje" => "Registro insertado correctamente"]);
     }
+    //subir 
 }
+
