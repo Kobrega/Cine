@@ -21,8 +21,17 @@ class StoreSalasRequest extends FormRequest
      */
     public function rules(): array
     {
+        return [ 'TipoProyector' => ['required', 'string'],
+                  'TipoSala' => ['required', 'string'],
+                  'CantidadAsientos' => ['required','numeric']            
+    ];
+    }
+
+    public function messages(): array {
         return [
-            //
+            'TipoProyector.required' => 'El proyector es requerido',
+            'TipoSala.required' => 'El tipo de sala es requerido',
+            'CantidadAsientos' => 'Los asientos son requeridos'
         ];
     }
 }

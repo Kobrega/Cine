@@ -21,8 +21,13 @@ class UpdatePeliculasRequest extends FormRequest
      */
     public function rules(): array
     {
+        return ['Duracion' => ['regex:/^\d{2}:\d{2}:\d{2}$/']
+        ];
+    }
+
+    public function messages(): array {
         return [
-            //
+            'Duracion.regex' => 'La Duracion debe de ir en formato de HH:MM:SS'
         ];
     }
 }

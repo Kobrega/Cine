@@ -21,8 +21,18 @@ class StorePeliculasRequest extends FormRequest
      */
     public function rules(): array
     {
+        return [ 'NomPelicula' => ['required', 'string', 'unique:peliculas,NomPelicula'],
+                  'Duracion' => ['required'],
+                  'Clasificacion' => ['required', 'string']
+        ];
+    }
+
+    public function messages(): array {
         return [
-            //
+            'NomPelicula.required' => 'El nombre de la pelicula es requerida',
+            'NomPelicula.unique' => 'La pelicula ya existe',
+            'Duracion.required' => 'La duracion es requerida',
+            'Clasificacion.required' => 'La clasificacion es requerida'
         ];
     }
 }

@@ -21,8 +21,13 @@ class UpdateSalasRequest extends FormRequest
      */
     public function rules(): array
     {
+        return ['CantidadAsientos' => ['nullable', 'numeric']
+        ];
+    }
+
+    public function messages(): array {
         return [
-            //
+            'CantidadAsientos.numeric' => 'Los asientos deben ser numericos'
         ];
     }
 }
