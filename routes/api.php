@@ -13,11 +13,10 @@ use App\Http\Controllers\ReportesController;
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
 });
-//sub
+
 Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaEnCine']);
-//Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas']->name('ObtenerCineYSalas'));
-//a
-//Route::resource('/cine_sala', CinesSalasController::class);
+
+Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas'])->name('ObtenerCineYSalas');
 
 Route::resource('/pelicula', PeliculasController::class);
 

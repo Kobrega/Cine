@@ -12,9 +12,9 @@ class ReportesController extends Controller
 {
     public function ObtenerCineYSalas(){
 
-        $result = CinesSalas::select('IdCineSala','IdCine','IdSala')
-                            ->join('cines as a','CinesSalas.IdCine','a.IdCine')
-                            ->join('salas as b','CinesSalas.IdSala','b.IdSala')
+        $result = CinesSalas::select('cines_salas.IdCineSala','a.IdCine as IdCine','b.IdSala as IdSala')
+                            ->join('cines as a','Cines_Salas.IdCine','a.IdCine')
+                            ->join('salas as b','Cines_Salas.IdSala','b.IdSala')
                             ->get();
 
         return Response()->json($result,200);
