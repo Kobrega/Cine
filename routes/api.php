@@ -18,6 +18,8 @@ Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaE
 
 Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas'])->name('ObtenerCineYSalas');
 
+Route::put('/actualizar-sala-en-cine/{id}', [procesosController::class, 'actualizarSalaEnCine']);
+
 Route::resource('/pelicula', PeliculasController::class);
 
 Route::resource('/sala', SalasController::class);
