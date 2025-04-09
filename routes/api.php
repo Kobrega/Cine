@@ -20,6 +20,8 @@ Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYS
 
 Route::put('/actualizar-sala-en-cine/{id}', [procesosController::class, 'actualizarSalaEnCine']);
 
+Route::DELETE('/Eliminar-cine-sala/{id}',[ProcesosController::class,'Eliminarcinesala']);
+
 Route::resource('/pelicula', PeliculasController::class);
 
 Route::resource('/sala', SalasController::class);
@@ -29,8 +31,6 @@ Route::resource('/cine', CineController::class);
 Route::post('/login',[LoginController::class,'authenticate'])->name('Login');
 
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
-
-Route::DELETE('/Eliminar-cine-sala/{id}',[ProcesosController::class,'Eliminarcinesala']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
