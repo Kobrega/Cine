@@ -30,6 +30,8 @@ Route::post('/login',[LoginController::class,'authenticate'])->name('Login');
 
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
+Route::DELETE('/Eliminar-cine-sala/{id}',[ProcesosController::class,'Eliminarcinesala']);
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
