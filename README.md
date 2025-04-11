@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-# C-xampp-htdocs-Cine
-=======
-=======
->>>>>>> 03f887e (tabla con los datos del drive)
->>>>>>> main
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -16,67 +8,107 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Sobre Nuestra API 
+Nuestra API está enfocada para franquicias de cine, lo que hace es administrar las salas de cine, asi como crear las funciones y organizar los horarios de las películas vigentes por semana del cine, también contiene la venta de boletos para el área de taquilla o de dulcería, este es un proyecto de universidad el cual está siendo elaborado por un equipo de 5 y cada semana se está actualizando y mejorando hasta llegar a la versión final.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+# Tablas
+En este apartado se encuentran las tablas que llevamos hasta el momento y se actualizarán con el tiempo.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tabla Cines
+Esta tabla es la tabla principal porque es donde se registran los cines y su estructura es:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+|IdCine|id|
+| ------------ | ------------ |
+|NomCine|varchar(50)|
+|Direccion|varchar(60)|
+|HorarioA|time|
+|HorarioC|time|
+|created_at|timestamp|
+|updated_at|timestamp|
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tabla Salas
+Esta tabla es donde se van a registrar las salas de cada cine relacionandose con las ID y su estructura es:
 
-## Laravel Sponsors
+|IdSalas|id |
+| ------------ | ------------ |
+|TipoProyector|varchar(30)|
+|CantidadAsientos|smallint|
+|TipoSala|varchar(20)|
+|created_at|timestamp|
+|updated_at|timestamp|
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Tabla Peliculas
+Esta es la tercera tabla de nuestro proyecto y aqui se guardaran las peliculas que se reproduciran en las salas, esta estara conectada con la tabla de salas y su estructura es:
 
-### Premium Partners
+|IdPelicula|id|
+| ------------ | ------------ |
+|NomPelicula|varchar(40)|
+|Duracion|time|
+|Clasficacion|varchar(10)|
+|created_at|timestamp|
+|updated_at|timestamp|
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Tabla Cines_Salas
+Esta tabla es la que relacion entre la tabla cines y la tabla salas donde estan guardadas sus ID para tener la relacion de que cines tienen que salas y su estructura es:
 
-## Contributing
+|IdCineSala|id|
+| ------------ | ------------ |
+|IdCine|foreignId|
+|IdSala|foreignId|
+|created_at|timestamp|
+|updated_at|timestamp|
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+# Lineas de codigo
+### Nuestras rutas
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+    <?php
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+	use Illuminate\Http\Request;
+	use Illuminate\Support\Facades\Route;
+	use App\Http\Controllers\LoginController;
+	use App\Http\Controllers\CineController;
+	use App\Http\Controllers\SalasController;
+	use App\Http\Controllers\PeliculasController;
+	use App\Http\Controllers\CinesSalasController;
+	use App\Http\Controllers\ProcesosController;
+	use App\Http\Controllers\ReportesController;
 
-## License
+	Route::get('/hola', function (Request $request) {
+    	return "HOLA MUNDO";
+	});
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> b35279a (Guajardo)
-=======
->>>>>>> 03f887e (tabla con los datos del drive)
->>>>>>> main
+	Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaEnCine']);
+
+	Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas'])->name('ObtenerCineYSalas');
+
+	Route::put('/actualizar-sala-en-cine/{id}', [procesosController::class, 'actualizarSalaEnCine']);
+
+	Route::DELETE('/Eliminar-cine-sala/{id}', [ProcesosController::class,'Eliminarcinesala']);
+
+	Route::resource('/pelicula', PeliculasController::class);
+
+	Route::resource('/sala', SalasController::class);
+
+	Route::resource('/cine', CineController::class);
+
+	Route::post('/login',[LoginController::class,'authenticate'])->name('Login');
+
+	Route::post('logout',[LoginController::class,'logout'])->name('logout');
+
+	Route::get('/user', function (Request $request) {
+    return $request->user();
+	})->middleware('auth:sanctum');
+
+    ?>
+
+### Equipo 1
+- Aceves Sanchez Luis Rafael
+- Alarcon Quezada Angel Leonardo
+- Cu Lopez Kobe Gael
+- Lopez Chaides Alexis Enrique
+- Quintana Villareal Jose Alfredo
