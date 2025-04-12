@@ -13,15 +13,25 @@ use App\Http\Controllers\ReportesController;
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
 });
+//RUTAS DE LA TABLA SALAS_PELICULAS
+Route::post('/insertar-pelicula-en-sala', [procesosController::class, 'InsertarPeliculaEnSala']);
 
+Route::get('/obtener-pelicula-en-sala',[ReportesController::class, 'ObtenerSalaYPelicula'])->name('ObtenerSalaYPelicula');
+
+Route::put('/actualizar-pelicula-en-sala/{id}',[procesosController::class,'ActualizarPeliculaEnSala']);
+
+Route::delete('/eliminar-pelicula-de-sala/{id}',[procesosController::class,'EliminarPeliculaDeSala']);
+//------------------------------
+
+//RUTAS DE LA TABLA CINE_SALAS
 Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaEnCine']);
 
 Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas'])->name('ObtenerCineYSalas');
 
 Route::put('/actualizar-sala-en-cine/{id}', [procesosController::class, 'actualizarSalaEnCine']);
 
-Route::DELETE('/Eliminar-cine-sala/{id}',[ProcesosController::class,'Eliminarcinesala']);
-
+Route::delete('/Eliminar-cine-sala/{id}',[ProcesosController::class,'EliminarCineEnSala']);
+//-----------------------------------------------------
 Route::resource('/pelicula', PeliculasController::class);
 
 Route::resource('/sala', SalasController::class);

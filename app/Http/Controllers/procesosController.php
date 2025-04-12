@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Cine;
 use App\Models\Salas;
 use App\Models\CinesSalas;
+use App\Models\Peliculas;
+use App\Models\SalasPelicula;
 
 class procesosController extends Controller
 {
@@ -87,9 +89,9 @@ class procesosController extends Controller
 }
 
 
-    public function destroy(Eliminarcinesala $Eliminarcinesala, $id)
+    public function EliminarCineEnSala(CinesSalas $Eliminarcinesala, $id)
     {
-        $Eliminarcinesala=Eliminarcinesala::findOrFail($id);//manda 404 Found si no existe 
+        $Eliminarcinesala=CinesSalas::findOrFail($id);//manda 404 Found si no existe 
         $Eliminarcinesala->delete();
 
         return response()->json([
@@ -97,6 +99,90 @@ class procesosController extends Controller
             'mensage'=>'Registro Cine_Salas Elinimado Correctamente'
         ],200);
     }//Delete
+
+    public function InsertarPeliculaEnSala(Request $request){
+        // ------  Pregunto si el Id de la pelicula que quiero guardar existe en la tabla --------- //
+        $existePelicula = Peliculas::where('IdPelicula', $request->IdPelicula)->exists();
+
+        // ------ Si la variable $existePelicula no trae valor, regresar mensaje al usuario ----- //
+        if (!$existePelicula) {
+            return response()->json(["Error" => true, "Mensaje" => "El Id de pelicula no existe :c"], 422);
+        }
+
+        // ---------------------------hacer la verificacion de la id de la sala------------------------- //
+        $existeSala = Salas::where('IdSala', $request->IdSala)->exists();
+        // ------ Si la variable $existeSala no trae valor, regresar mensaje al usuario ----- //
+        if (!$existeSala) {
+            return response()->json(["Error" => true, "Mensaje" => "El Id de Sala no existe :c"], 422);
+        }
+
+        // Verificar que no exista otro registro con el mismo IdCine e IdSala (excepto el que estamos actualizando)
+        $existeRegistro = SalasPelicula::where('IdPelicula', $request->IdPelicula)
+                                        ->where('IdSala', $request->IdSala)
+                                        ->exists();
+
+        if ($existeRegistro) {
+        return response()->json(["Error" => true, "Mensaje" => "Ya existe un registro con este IdCine e IdSala :c"], 422);
+        }
+
+        // Crear el nuevo registro
+        $result = SalasPelicula::create([
+            "IdPelicula" => $request->IdPelicula,
+            "IdSala" => $request->IdSala
+        ]);
+        
+        return response()->json(["Error" => false, "Mensaje" => "Registro insertado correctamente"]);
+    }
+
+    public function ActualizarPeliculaEnSala(Request $request, $id){
+        try{
+
+        // Validar que la pelicula exista
+        $existePelicula = Peliculas::where('IdPelicula', $request->IdPelicula)->exists();
+        if (!$existePelicula) {
+            return response()->json(["Error" => true, "Mensaje" => "El Id de pelicula no existe :c"], 422);
+        }
+        
+        // Validar que la sala exista
+        $existeSala = Salas::where('IdSala', $request->IdSala)->exists();
+        if (!$existeSala) {
+            return response()->json(["Error" => true, "Mensaje" => "El Id de Sala no existe :c"], 422);
+        }
+
+        // Buscar el registro a actualizar
+        $registro = SalasPelicula::find($id);
+        if (!$registro) {
+            return response()->json(["Error" => true, "Mensaje" => "El registro no fue encontrado :c"], 404);
+        }
+        
+         // Verificar que no exista otro registro con el mismo IdCine e IdSala (excepto el que estamos actualizando)
+        $existeRegistro = SalasPelicula::where('IdPelicula', $request->IdPelicula)
+                                     ->where('IdSala', $request->IdSala)
+                                     ->where('IdSalasPeli', '!=', $id)
+                                     ->exists();
+        if ($existeRegistro) {
+            return response()->json(["Error" => true, "Mensaje" => "Ya existe un registro con este IdPelicula e IdSala :c"], 422);
+        }
+
+        // Actualizar el registro
+        $registro->IdPelicula = $request->IdPelicula;
+        $registro->IdSala = $request->IdSala;
+        $registro->save();
+        
+        return response()->json(["Error" => false, "Mensaje" => "Registro actualizado correctamente"]);
+        
+        } catch (\Exception $e) {
+            // Captura cualquier error y retorna el mensaje de error
+            return response()->json(["Error" => true, "Mensaje" => "Ocurrió un error: " . $e->getMessage()], 500);
+        }
+    }
+
+    public function EliminarPeliculaDeSala(SalasPelicula $EliminarPeliculaSala, $id){
+        $EliminarPeliculaSala=SalasPelicula::findOrFail($id);//manda 404 Found si no existe 
+        $EliminarPeliculaSala->delete();
+
+        return response()->json(['success'=> true,'mensage'=>'Registro Elinimado Correctamente'],200);
+    }
 
 }
 

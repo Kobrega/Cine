@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cine;
 use App\Models\Salas;
 use App\Models\CinesSalas;
+use App\Models\SalasPelicula;
 
 class ReportesController extends Controller
 {
@@ -17,6 +18,14 @@ class ReportesController extends Controller
                             ->join('salas as b','Cines_Salas.IdSala','b.IdSala')
                             ->get();
 
+        return Response()->json($result,200);
+    }
+
+    public function ObtenerSalaYPelicula(){
+        $result = SalasPelicula::select('salas_peliculas.IdSalasPeli','a.IdPelicula as IdPelicula','b.IdSala as IdSala')
+                                ->join('peliculas as a', 'Salas_Peliculas.IdPelicula','a.IdPelicula')
+                                ->join('salas as b','Salas_Peliculas.IdSala','b.IdSala')
+                                ->get();
         return Response()->json($result,200);
     }
 }
