@@ -9,7 +9,7 @@ use App\Http\Controllers\PeliculasController;
 use App\Http\Controllers\CinesSalasController;
 use App\Http\Controllers\ProcesosController;
 use App\Http\Controllers\ReportesController;
-
+//prueba
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
 });
