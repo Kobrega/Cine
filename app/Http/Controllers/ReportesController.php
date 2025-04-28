@@ -8,6 +8,7 @@ use App\Models\Cine;
 use App\Models\Salas;
 use App\Models\CinesSalas;
 use App\Models\SalasPelicula;
+use App\Models\Funcion;
 
 class ReportesController extends Controller
 {
@@ -27,5 +28,12 @@ class ReportesController extends Controller
                                 ->join('salas as b','Salas_Peliculas.IdSala','b.IdSala')
                                 ->get();
         return Response()->json($result,200);
+    }
+
+    // Listar funciones
+    public function listaFunciones()
+    {
+        $funciones = Funcion::with('salas_peliculas.pelicula', 'salas_peliculas.sala')->get();
+        return view('reportes.funciones', compact('funciones'));
     }
 }

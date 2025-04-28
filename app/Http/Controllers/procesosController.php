@@ -8,7 +8,7 @@ use App\Models\Salas;
 use App\Models\CinesSalas;
 use App\Models\Peliculas;
 use App\Models\SalasPelicula;
-
+use App\Models\Funcion;
 class procesosController extends Controller
 {
     public function insertarSalaEnCine(Request $request){
@@ -182,6 +182,40 @@ class procesosController extends Controller
         $EliminarPeliculaSala->delete();
 
         return response()->json(['success'=> true,'mensage'=>'Registro Elinimado Correctamente'],200);
+    }
+
+ 
+    
+ 
+ 
+     // Actualizar función
+     public function guardarFuncion(Request $request)
+    {
+         $request->validate([
+             'IdSalasPeli' => 'required|exists:salas_peliculas,IdSalasPeli',
+             'Fecha' => 'required|date',
+             'HoraInicio' => 'required',
+             'HoraFin' => 'required',
+         ]);
+     
+         // Crear la función
+         $funcion = Funcion::create($request->all());
+     
+         return response()->json(['message' => 'Función creada correctamente.','data' => $funcion], 201); // 201 Created
+    }
+ 
+     // Eliminar función
+     public function eliminarFuncion($id)
+    {
+        // Buscar la función por su ID
+        $funcion = Funcion::findOrFail($id);
+
+        // Eliminar la función
+        $funcion->delete();
+
+   
+        return response()->json(['message' => 'Función eliminada correctamente.','data' => $funcion
+        ], 200); // 200 OK
     }
 
 }
