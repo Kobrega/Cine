@@ -20,4 +20,14 @@ class SalasPelicula extends Model
     ];
 
     protected $hidden = [];
+
+    public function pelicula()
+    {
+        return $this->belongsTo(Peliculas::class, 'IdPelicula');
+    }
+
+    public function sala()
+    {
+        return $this->belongsTo(Salas::class, 'IdSala');
+    }
 }

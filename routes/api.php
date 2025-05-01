@@ -32,6 +32,14 @@ Route::put('/actualizar-sala-en-cine/{id}', [procesosController::class, 'actuali
 
 Route::delete('/Eliminar-cine-sala/{id}',[ProcesosController::class,'EliminarCineEnSala']);
 //-----------------------------------------------------
+
+//RUTAS DE LA TABLA FUNCIONES--------------------
+Route::post('/funciones/guardar', [ProcesosController::class, 'guardarFuncion']);
+Route::get('/funciones', [ReportesController::class, 'listaFunciones']);
+Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarFuncion']);
+Route::put('/funciones/{id}/actualizar', [ProcesosController::class, 'actualizarFuncion']);
+//-------------------------------------------------
+
 Route::resource('/pelicula', PeliculasController::class);
 
 Route::resource('/sala', SalasController::class);
