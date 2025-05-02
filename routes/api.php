@@ -9,6 +9,8 @@ use App\Http\Controllers\PeliculasController;
 use App\Http\Controllers\CinesSalasController;
 use App\Http\Controllers\ProcesosController;
 use App\Http\Controllers\ReportesController;
+use App\Http\Controllers\PreciosXTipoSalaController;
+
 //prueba
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
@@ -39,6 +41,8 @@ Route::get('/funciones', [ReportesController::class, 'listaFunciones']);
 Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarFuncion']);
 Route::put('/funciones/{id}/actualizar', [ProcesosController::class, 'actualizarFuncion']);
 //-------------------------------------------------
+
+Route::resource('/PrecioXTipoSala', PreciosXTipoSalaController::class);
 
 Route::resource('/pelicula', PeliculasController::class);
 
