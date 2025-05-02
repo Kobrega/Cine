@@ -10,6 +10,8 @@ use App\Http\Controllers\CinesSalasController;
 use App\Http\Controllers\ProcesosController;
 use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\PreciosXTipoSalaController;
+use App\Http\Controllers\PrecioXEdadController;
+use App\Http\Controllers\PrecioXHorarioController;
 
 //prueba
 Route::get('/hola', function (Request $request) {
@@ -42,7 +44,13 @@ Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarF
 Route::put('/funciones/{id}/actualizar', [ProcesosController::class, 'actualizarFuncion']);
 //-------------------------------------------------
 
+//RUTAS DE LAS TABLAS PRECIOS--------------------
+Route::resource('/PrecioXHorario', PrecioXHorarioController::class);
+
+Route::resource('/PrecioXEdad', PrecioXEdadController::class);
+
 Route::resource('/PrecioXTipoSala', PreciosXTipoSalaController::class);
+//-------------------------------------------------
 
 Route::resource('/pelicula', PeliculasController::class);
 
