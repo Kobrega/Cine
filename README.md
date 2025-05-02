@@ -140,3 +140,5 @@ Esta tabla es la que relacion entre la tabla salas y la tabla de peliculas ara r
 - Cu Lopez Kobe Gael
 - Lopez Chaides Alexis Enrique
 - Quintana Villareal Jose Alfredo
+
+[![Imagen-de-Whats-App-2025-05-01-a-las-19-51-23-5dd3a611.jpg](https://i.postimg.cc/T2gj2Q9G/Imagen-de-Whats-App-2025-05-01-a-las-19-51-23-5dd3a611.jpg)](https://postimg.cc/bdYS3xWF)
