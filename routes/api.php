@@ -44,13 +44,7 @@ Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarF
 Route::put('/funciones/{id}/actualizar', [ProcesosController::class, 'actualizarFuncion']);
 //-------------------------------------------------
 
-//RUTAS DE LAS TABLAS PRECIOS--------------------
-Route::resource('/PrecioXHorario', PrecioXHorarioController::class);
 
-Route::resource('/PrecioXEdad', PrecioXEdadController::class);
-
-Route::resource('/PrecioXTipoSala', PreciosXTipoSalaController::class);
-//-------------------------------------------------
 
 Route::resource('/pelicula', PeliculasController::class);
 
