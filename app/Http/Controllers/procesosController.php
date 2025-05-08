@@ -217,6 +217,28 @@ class procesosController extends Controller
         return response()->json(['message' => 'Función eliminada correctamente.','data' => $funcion
         ], 200); // 200 OK
     }
+    //put de la tabla de funciones
+    public function actualizarFuncion(Request $request, $id)
+    {
+        $request->validate([
+            'IdSalasPeli' => 'required|exists:salas_peliculas,IdSalasPeli',
+            'Fecha' => 'required|date',
+            'HoraInicio' => 'required',
+            'HoraFin' => 'required',
+        ]);
+    
+        // Buscar la función existente
+        $funcion = Funcion::find($id);
+    
+        if (!$funcion) {
+            return response()->json(['message' => 'Función no encontrada.'], 404);
+        }
+    
+        // Actualizar la función con los datos del request
+        $funcion->update($request->all());
+    
+        return response()->json(['message' => 'Función actualizada correctamente.', 'data' => $funcion], 200); // 200 OK
+    }
 
 }
 

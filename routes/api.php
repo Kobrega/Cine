@@ -9,10 +9,17 @@ use App\Http\Controllers\PeliculasController;
 use App\Http\Controllers\CinesSalasController;
 use App\Http\Controllers\ProcesosController;
 use App\Http\Controllers\ReportesController;
+<<<<<<< HEAD
 use App\Http\Controllers\ReservacionController;
 use App\Http\Controllers\AsientosReservadosController;
 
+=======
+use App\Http\Controllers\PreciosXTipoSalaController;
+use App\Http\Controllers\PrecioXEdadController;
+use App\Http\Controllers\PrecioXHorarioController;
+>>>>>>> 10245f8ccc489a4a3f5d58c929a7e5317d901c5e
 
+//prueba
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
 });
@@ -40,7 +47,10 @@ Route::delete('/Eliminar-cine-sala/{id}',[ProcesosController::class,'EliminarCin
 Route::post('/funciones/guardar', [ProcesosController::class, 'guardarFuncion']);
 Route::get('/funciones', [ReportesController::class, 'listaFunciones']);
 Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarFuncion']);
+Route::put('/funciones/{id}/actualizar', [ProcesosController::class, 'actualizarFuncion']);
 //-------------------------------------------------
+
+
 
 Route::resource('/pelicula', PeliculasController::class);
 
