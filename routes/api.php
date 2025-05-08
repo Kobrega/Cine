@@ -9,6 +9,9 @@ use App\Http\Controllers\PeliculasController;
 use App\Http\Controllers\CinesSalasController;
 use App\Http\Controllers\ProcesosController;
 use App\Http\Controllers\ReportesController;
+use App\Http\Controllers\ReservacionController;
+use App\Http\Controllers\AsientosReservadosController;
+
 
 Route::get('/hola', function (Request $request) {
     return "HOLA MUNDO";
@@ -52,3 +55,8 @@ Route::post('logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+
+///
+Route::post('/reservar-asientos', [AsientosReservadosController::class, 'store']);
+Route::get('/funciones/{idFuncion}/asientos-reservados', [ReservacionController::class, 'asientosReservados']);

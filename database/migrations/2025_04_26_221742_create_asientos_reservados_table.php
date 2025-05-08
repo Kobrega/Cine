@@ -6,20 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
-    {
-        Schema::create('asientos_reservados', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('asientos_reservados', function (Blueprint $table) {
+        $table->id(); 
+        $table->unsignedBigInteger('IdFuncion'); // Función/Hora específica
+        $table->unsignedBigInteger('IdSala');    // Sala
+        $table->string('Fila');                  // Ej: A, B, C
+        $table->integer('NumeroAsiento');        // Ej: 1, 2, 3
+        $table->timestamps();
 
-    /**
-     * Reverse the migrations.
-     */
+        // Relaciones
+        $table->foreign('IdFuncion')->references('id')->on('funciones')->onDelete('cascade');
+        $table->foreign('IdSala')->references('id')->on('salas')->onDelete('cascade');
+
+        // Evitar reservas duplicadas para el mismo asiento
+        $table->unique(['IdFuncion', 'IdSala', 'Fila', 'NumeroAsiento']);
+    });
+}
+
     public function down(): void
     {
         Schema::dropIfExists('asientos_reservados');
