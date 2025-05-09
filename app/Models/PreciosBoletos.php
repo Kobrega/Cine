@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PreciosXTipoSala extends Model
+class PreciosBoletos extends Model
 {
-    public $table = "precios_x_tipo_salas";
+    public $table = "Precios_Boletos";
     
-    protected $primaryKey = "IdPrecioTipoSala";
+    protected $primaryKey = "IdBoleto";
 
     /**
      * the atributes that are mass assignable
@@ -16,7 +16,7 @@ class PreciosXTipoSala extends Model
      * @var array
      */
     protected $fillable = [
-        'IdSala','BoletoXTipo','Precio'
+        'Edad','TipoSala','Precio'
     ];
 
     protected $hidden = [];
