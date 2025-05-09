@@ -71,6 +71,27 @@ Esta tabla es la que relacion entre la tabla salas y la tabla de peliculas ara r
 |created_at|timestamp|
 |updated_at|timestamp|
 
+## Tabla Salas_Peliculas
+Esta tabla es la que relacion entre la tabla Salas y la tabla Peliculas donde estan guardadas sus ID para la relacion entre ambas tablas:
+
+|IdSalasPeli|id|
+| ------------ | ------------ |
+|IdPelicula|foreignId|
+|IdSala|foreignId|
+|created_at|timestamp|
+|updated_at|timestamp|
+
+## Tabla Funciones
+Esta tabla es donde se registran los horarios de las peliculas en cada sala tomando el ID foranea de Salas_Peliculas y asignandoles cuando empieza y cuando termina la pelicula:
+
+|IdFuncion|id|
+| ------------ | ------------ |
+|IdSalasPeli|foreignId|
+|Fecha|date|
+|HoraInicio|time|
+|HoraFin|time|
+|created_at|timestamp|
+|updated_at|timestamp|
 
 # Lineas de codigo
 ### Nuestras rutas
@@ -94,6 +115,53 @@ Esta tabla es la que relacion entre la tabla salas y la tabla de peliculas ara r
     //RUTAS DE LA TABLA SALAS_PELICULAS
     Route::post('/insertar-pelicula-en-sala', [procesosController::class, 'InsertarPeliculaEnSala']);
 
+<<<<<<< HEAD
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\LoginController;
+    use App\Http\Controllers\CineController;
+    use App\Http\Controllers\SalasController;
+    use App\Http\Controllers\PeliculasController;
+    use App\Http\Controllers\CinesSalasController;
+    use App\Http\Controllers\ProcesosController;
+    use App\Http\Controllers\ReportesController;
+
+    Route::get('/hola', function (Request $request) {
+        return "HOLA MUNDO";
+    });
+    //RUTAS DE LA TABLA SALAS_PELICULAS
+    Route::post('/insertar-pelicula-en-sala', [procesosController::class, 'InsertarPeliculaEnSala']);
+
+    Route::get('/obtener-pelicula-en-sala',[ReportesController::class, 'ObtenerSalaYPelicula'])->name('ObtenerSalaYPelicula');
+
+    Route::put('/actualizar-pelicula-en-sala/{id}',[procesosController::class,'ActualizarPeliculaEnSala']);
+
+    Route::delete('/eliminar-pelicula-de-sala/{id}',[procesosController::class,'EliminarPeliculaDeSala']);
+    //------------------------------
+
+    //RUTAS DE LA TABLA CINE_SALAS
+    Route::post('/insertar-sala-en-cine', [procesosController::class, 'insertarSalaEnCine']);
+
+    Route::get('/obtener-salas-asignadas',[ReportesController::class, 'ObtenerCineYSalas'])->name('ObtenerCineYSalas');
+
+    Route::put('/actualizar-sala-en-cine/{id}', [procesosController::class, 'actualizarSalaEnCine']);
+
+    Route::delete('/Eliminar-cine-sala/{id}',[ProcesosController::class,'EliminarCineEnSala']);
+    //-----------------------------------------------------
+
+    //RUTAS DE LA TABLA FUNCIONES--------------------
+    Route::post('/funciones/guardar', [ProcesosController::class, 'guardarFuncion']);
+    Route::get('/funciones', [ReportesController::class, 'listaFunciones']);
+    Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarFuncion']);
+    //-------------------------------------------------
+
+    Route::resource('/pelicula', PeliculasController::class);
+
+    Route::resource('/sala', SalasController::class);
+
+    Route::resource('/cine', CineController::class);
+
+=======
     Route::get('/obtener-pelicula-en-sala',[ReportesController::class, 'ObtenerSalaYPelicula'])->name('ObtenerSalaYPelicula');
 
     Route::put('/actualizar-pelicula-en-sala/{id}',[procesosController::class,'ActualizarPeliculaEnSala']);
@@ -124,6 +192,7 @@ Esta tabla es la que relacion entre la tabla salas y la tabla de peliculas ara r
 
     Route::resource('/cine', CineController::class);
 
+>>>>>>> 10245f8ccc489a4a3f5d58c929a7e5317d901c5e
     Route::post('/login',[LoginController::class,'authenticate'])->name('Login');
 
     Route::post('logout',[LoginController::class,'logout'])->name('logout');
@@ -140,3 +209,5 @@ Esta tabla es la que relacion entre la tabla salas y la tabla de peliculas ara r
 - Cu Lopez Kobe Gael
 - Lopez Chaides Alexis Enrique
 - Quintana Villareal Jose Alfredo
+
+[![Imagen-de-Whats-App-2025-05-01-a-las-19-51-23-5dd3a611.jpg](https://i.postimg.cc/T2gj2Q9G/Imagen-de-Whats-App-2025-05-01-a-las-19-51-23-5dd3a611.jpg)](https://postimg.cc/bdYS3xWF)

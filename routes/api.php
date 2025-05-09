@@ -9,7 +9,19 @@ use App\Http\Controllers\PeliculasController;
 use App\Http\Controllers\CinesSalasController;
 use App\Http\Controllers\ProcesosController;
 use App\Http\Controllers\ReportesController;
+<<<<<<< HEAD
 use App\Http\Controllers\PreciosBoletosController;
+=======
+<<<<<<< HEAD
+use App\Http\Controllers\ReservacionController;
+use App\Http\Controllers\AsientosReservadosController;
+
+=======
+use App\Http\Controllers\PreciosXTipoSalaController;
+use App\Http\Controllers\PrecioXEdadController;
+use App\Http\Controllers\PrecioXHorarioController;
+>>>>>>> 10245f8ccc489a4a3f5d58c929a7e5317d901c5e
+>>>>>>> e4ebb02797d573e5114946bf6a9be00845e66f81
 
 //prueba
 Route::get('/hola', function (Request $request) {
@@ -42,9 +54,13 @@ Route::delete('/funciones/{id}/eliminar', [ProcesosController::class, 'eliminarF
 Route::put('/funciones/{id}/actualizar', [ProcesosController::class, 'actualizarFuncion']);
 //-------------------------------------------------
 
+<<<<<<< HEAD
 //RUTA DE LA TABLA PRECIOS--------------------
 Route::resource('/precios-boletos',PreciosBoletosController::class);
 //-------------------------------------------------
+=======
+
+>>>>>>> e4ebb02797d573e5114946bf6a9be00845e66f81
 
 Route::resource('/pelicula', PeliculasController::class);
 
@@ -59,3 +75,8 @@ Route::post('logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+
+///
+Route::post('/reservar-asientos', [AsientosReservadosController::class, 'store']);
+Route::get('/funciones/{idFuncion}/asientos-reservados', [ReservacionController::class, 'asientosReservados']);
