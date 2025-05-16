@@ -10,8 +10,12 @@ class Reservacion extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['IdFuncion', 'IdSala', 'Fila', 'NumeroAsiento'];
-
+    protected $fillable = [
+        'IdFuncion', 
+        'FechaReserva',
+        'Estado', // Ejemplo: 'pendiente', 'confirmada', 'cancelada'
+        'Total' 
+    ];
 
     // Relaciones
     public function funcion()
@@ -23,4 +27,6 @@ class Reservacion extends Model
     {
         return $this->hasMany(AsientoReservado::class, 'IdReserva');
     }
+
+    
 }

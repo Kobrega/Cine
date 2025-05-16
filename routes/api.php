@@ -69,5 +69,6 @@ Route::get('/user', function (Request $request) {
 
 
 ///
-Route::post('/reservar-asientos', [AsientosReservadosController::class, 'store']);
-Route::get('/funciones/{idFuncion}/asientos-reservados', [ReservacionController::class, 'asientosReservados']);
+Route::post('/reservaciones', [ReservacionController::class, 'store']);
+    Route::get('/mis-reservaciones', [ReservacionController::class, 'misReservaciones']);
+    Route::post('/reservaciones/{id}/cancelar', [ReservacionController::class, 'cancelarReservacion']);

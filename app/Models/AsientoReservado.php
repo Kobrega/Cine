@@ -7,16 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class AsientoReservado extends Model
 {
     public $table = "asientos_reservados";
-    protected $primaryKey = "id"; // este es el id autoincremental
+    protected $primaryKey = "id"; 
 
     protected $fillable = [
+        'IdReserva', 
         'IdFuncion',
         'IdSala',
         'Fila',
         'NumeroAsiento'
     ];
 
-    // Relaciones (opcional pero recomendable)
+    // Relaciones
     public function funcion()
     {
         return $this->belongsTo(Funcion::class, 'IdFuncion');
@@ -27,5 +28,8 @@ class AsientoReservado extends Model
         return $this->belongsTo(Sala::class, 'IdSala');
     }
 
-    
+    public function reservacion()
+    {
+        return $this->belongsTo(Reservacion::class, 'IdReserva');
+    }
 }
