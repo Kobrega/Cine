@@ -65,7 +65,7 @@ class ReportesController extends Controller
 
         return response()->json($funciones, 200);
     }
-
+//ME DEBES DOS CARLS ANGEL 8V
 public function ticket($idFunction)
 {
     $ticket = DB::table('funciones')
