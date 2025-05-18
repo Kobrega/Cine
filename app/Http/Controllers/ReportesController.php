@@ -63,4 +63,28 @@ class ReportesController extends Controller
 
         return response()->json($funciones, 200);
     }
+
+    public function ticket($idFuncion)
+{
+    $ticket = Funcion::with([
+            'salas_peliculas',
+            'funciones',
+            'asientos_reservados' 
+        ])
+        ->where('IdFuncion', $idFuncion)
+        ->firstOrFail();
+
+    $formattedTicket = [
+        'Fecha' => $ticket->Fecha,
+        'Hora' => $ticket->HoraInicio,
+        'NomPelicula' => $ticket->salas_peliculas->pelicula->Nombre,
+        'Sala' => $ticket->salas_peliculas->sala->Nombre,
+        'Clasificacion' => $ticket->salas_peliculas->pelicula->Clasificacion,
+        'Fila' => $ticket->reservas->flatMap->asientos->pluck('Fila')->implode(','),
+        'NumeroAsiento' => $ticket->reservas->flatMap->asientos->pluck('Numero')->implode(','),
+        'Total' => $ticket->reservas->sum('Total')
+    ];
+
+    return response()->json($formattedTicket, 200);
+}
 }

@@ -72,3 +72,6 @@ Route::get('/user', function (Request $request) {
 Route::post('/reservaciones', [ReservacionController::class, 'store']);
     Route::get('/mis-reservaciones', [ReservacionController::class, 'misReservaciones']);
     Route::post('/reservaciones/{id}/cancelar', [ReservacionController::class, 'cancelarReservacion']);
+
+//Ruta para el ticket
+Route::get('/ticket/{idFuncion}', [ReportesController::class, 'ticket']);
