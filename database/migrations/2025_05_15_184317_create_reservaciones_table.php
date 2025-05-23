@@ -8,14 +8,14 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('reservaciones', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('IdFuncion')->constrained('Funcion');
-            $table->dateTime('FechaReserva');
-            $table->string('Estado')->default('pendiente');
-            $table->decimal('Total', 8, 2);
-            $table->timestamps();
-        });
+    Schema::create('reservaciones', function (Blueprint $table) {
+    $table->id('IdReserva');
+    $table->foreignId('IdFuncion')->references('IdFuncion')->on('funciones');
+    $table->string('asiento');
+    $table->boolean('reservado');
+    $table->timestamps();
+    });
+
     }
 
     public function down()

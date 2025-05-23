@@ -13,20 +13,8 @@ class Reservacion extends Model
     protected $fillable = [
         'IdFuncion', 
         'FechaReserva',
-        'Estado', // Ejemplo: 'pendiente', 'confirmada', 'cancelada'
-        'Total' 
+        'asiento',
     ];
 
-    // Relaciones
-    public function funcion()
-    {
-        return $this->belongsTo(Funcion::class, 'IdFuncion');
-    }
 
-    public function asientos()
-    {
-        return $this->hasMany(AsientoReservado::class, 'IdReserva');
-    }
-
-    
 }
