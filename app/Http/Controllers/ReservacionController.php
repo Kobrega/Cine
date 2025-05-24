@@ -31,6 +31,11 @@ class ReservacionController extends Controller
             ->where('asiento', $asiento)
             ->exists();
 
+            if ($existe) {
+            return response()->json(['mensaje' => 'El asiento ya está reservado'], 409);
+        }
+
+        
         
 
         DB::table('reservaciones')->insert([

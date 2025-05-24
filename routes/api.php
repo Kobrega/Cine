@@ -74,3 +74,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/reservar', [ReservacionController::class, 'reservar']);
 Route::get('/reservaciones', [ReservacionController::class, 'index']);
 
+Route::get('/ticket/{idFuncion}', [ReportesController::class, 'ticket']);
