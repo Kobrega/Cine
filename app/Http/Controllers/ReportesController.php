@@ -77,7 +77,7 @@ public function ticket($idFunction)
             'peliculas.Clasificacion',
             DB::raw('GROUP_CONCAT(DISTINCT asientos_reservados.Fila) as Filas'),
             DB::raw('GROUP_CONCAT(DISTINCT asientos_reservados.NumeroAsiento) as NumeroAsiento'),
-            
+            DB::raw('SUM(reservaciones.Total) as Total')
         )
         ->join('salas_peliculas', 'funciones.IdSalasPeli', '=', 'salas_peliculas.IdSalasPeli')
         ->join('peliculas', 'salas_peliculas.IdPelicula', '=', 'peliculas.IdPelicula')
@@ -90,7 +90,7 @@ public function ticket($idFunction)
             'funciones.Fecha',
             'funciones.HoraInicio',
             'peliculas.NomPelicula',
-            'salas.IdSala',
+            'salas.IdsssSala',
             'peliculas.Clasificacion'
         )
         ->first();

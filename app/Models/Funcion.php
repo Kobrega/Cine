@@ -22,4 +22,9 @@ class Funcion extends Model
     {
         return $this->belongsTo(SalasPelicula::class, 'IdSalasPeli');
     }
+
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class, 'IdFuncion');
+    }
 }
