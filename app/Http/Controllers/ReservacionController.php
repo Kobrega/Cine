@@ -4,18 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservacion;
-use App\Models\AsientoReservado;
-use App\Models\Funcion;
-use App\Models\PreciosBoletos;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-
 
 class ReservacionController extends Controller
 {
-    
-
     public function reservar(Request $request)
     {
         $request->validate([
@@ -31,22 +23,19 @@ class ReservacionController extends Controller
             ->where('asiento', $asiento)
             ->exists();
 
-            if ($existe) {
+        if ($existe) {
             return response()->json(['mensaje' => 'El asiento ya está reservado'], 409);
         }
 
-        
-        
+       $total = 80.00; 
 
         DB::table('reservaciones')->insert([
             'IdFuncion' => $IdFuncion,
             'asiento' => $asiento,
-            'reservado' => true,
+            'FechaReserva' => now(),
+            'Total' => $total,
         ]);
 
-         if ($existe) {
-            return response()->json(['mensaje' => 'El asiento ya está reservado'], 409);
-        }
         return response()->json([
             'mensaje' => 'Asiento reservado con éxito',
         ]);
@@ -56,5 +45,4 @@ class ReservacionController extends Controller
     {
         return response()->json(Reservacion::all());
     }
-
 }

@@ -65,7 +65,6 @@ class ReportesController extends Controller
 
         return response()->json($funciones, 200);
     }
-//ME DEBES DOS CARLS ANGEL 8V
 public function ticket($idFunction)
 {
     $ticket = DB::table('funciones')
@@ -90,11 +89,11 @@ public function ticket($idFunction)
             'funciones.Fecha',
             'funciones.HoraInicio',
             'peliculas.NomPelicula',
-            'salas.IdsssSala',
+            'salas.IdSala', 
             'peliculas.Clasificacion'
         )
         ->first();
-        
+
     if (!$ticket) {
         return response()->json(['error' => 'Función no encontrada'], 404);
     }

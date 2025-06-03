@@ -14,6 +14,7 @@ class Reservacion extends Model
         'IdFuncion', 
         'FechaReserva',
         'asiento',
+        'Total'
     ];
 
 
